@@ -45,5 +45,5 @@ btnSubmit.addEventListener('click', event =>{
      if(name === '' || price === '' || !(!isNaN(parseFloat(price)) && isNaN(isFinite(price)))){
          alert('product name and price must necessary. price also must be valid')
      }
-     console.log(name, price)
+     console.log(name, price)  //testing purpose
 })
