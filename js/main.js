@@ -4,7 +4,10 @@ const msg = document.querySelector('#msg')
 const productName = document.querySelector('#productName')
 const productPrice = document.querySelector('#productPrice')
 const btnSubmit = document.querySelector('#btnSubmit')
-
+const backgroundColor = document.querySelector('body')
+const radioOne = document.querySelector('#radioOne')
+const radioTwo = document.querySelector('#radioTwo')
+const radioThree = document.querySelector('#radioThree')
 
 let productData = [
     /*
@@ -34,8 +37,13 @@ function getData(productElement){
             li = document.createElement('li')
             li.className = 'list-group-item'
             li.id = `product-${id}`
-            li.innerHTML = `<strong>${name}</strong><span>-$${price}</span>
-            <span class="float-right text-danger delete" >X</span>`
+            li.innerHTML = `<strong>${name}</strong><span>-$${price}`
+
+            let span = document.createElement('span')
+            span.classList = 'float-right text-danger delete'
+            span.innerHTML = 'X'
+            span.style.cursor = 'pointer'
+            li.appendChild(span)
         productGroupUL.appendChild(li)
     })
     }
@@ -84,6 +92,7 @@ productGroupUL.addEventListener('click', (event) => {
        // event.target.parentElement.remove()  or
        const target = event.target.parentElement
        event.target.parentElement.parentElement.removeChild(target)
+       
 
        // removing data form store
         const id = parseInt(target.id.split('-')[1])
@@ -96,7 +105,6 @@ productGroupUL.addEventListener('click', (event) => {
        if(result.length === 0) getMessage('Product List Empty....')
 
     }
-
     
     
 })
@@ -118,9 +126,23 @@ filterInput.addEventListener('keyup',(event)=> {
         }
         
     });
-    (itemLength>0)?getMessage(''):getMessage('No item Found')
+    (itemLength>0)?getMessage(''):getMessage('No item Found.....')
 })
 
+
+
+
+// display theme block
+displayTheme(radioOne,backgroundColor,'#0677A3')
+displayTheme(radioTwo,backgroundColor,'#917164')
+displayTheme(radioThree,backgroundColor,'#8D2F23')
+
+
+function displayTheme(buttonClick, element, color){
+    buttonClick.addEventListener('click', ()=> {
+        element.style.backgroundColor = color
+    })
+}
 
 function getMessage(message){
     msg.innerHTML = message
